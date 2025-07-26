@@ -1,0 +1,195 @@
+==================================================================================
+Additions, modifications and corrections for DGUI V2R7 (28-Dec-2024)
+==================================================================================
+## ADDITIONS ##
+ 1. Added the more recent MAC OS names (shown when clicking on "About" and then
+    "List software versions")
+
+## MODIFICATIONS ##
+ 1. When you use DGUI to run DYNAC, you now need to include the full path to files
+    listed in the DYNAC input file(s). Examples are: 
+      -the distribution file listed after the GEBEAM card
+      -the solenoid field file listed after the FSOLE card 
+      -the RFQ description file listed after the RFQPTQ card (and possible RMS and
+       FF field file names referred to from within the RFQ description file).
+      -the field description file listed after the FIELD card (e.g. used in 
+       combination with CAVNUM)
+ 2. In more recent versions of python3 regular expressions have to be explicitly
+    listed as such (not doing so is deprecated and will give a warning). DGUI
+    has been updated accordingly.
+
+## CORRECTIONS ##
+ 1. None 
+
+==================================================================================
+Additions, modifications and corrections for DGUI V2R6 (15-Aug-2024)
+==================================================================================
+## ADDITIONS ##
+ 1. The path towards the location of the last plotted ditribution file is now
+    automatically saved in the dgui.ini file. This was already done for the
+    location of the last used input file and the last used project.
+
+ 2. Clarification in the DGUI_UG as to where the dgui.ini file would need to 
+    be placed in the case of a multi-user dynac environment. Note that the
+    path to the location of the dgui.ini file needs to be given as argument (behind
+    -p) when opening dgui.py
+
+3. The available aperture (as set by the REJECT card) can now also be plotted. Note
+   that this requires DYNAC V7R3 or newer. If no aperture was defined in the dynac 
+   input file, a default value of 100 cm will be taken.
+
+4. From the "Help" menu, in addition to opening PDF User Guides, one can select
+   a DYNAC Type Code directly, in order to get information on the selected Type
+   Code.
+
+## MODIFICATIONS ##
+ 1. Updated some calls to some Python libraries to be consistent with most recent 
+    versions of these libraries, whilst remaining backward compatible with older 
+    libraries.
+
+## CORRECTIONS ##
+ 1. Erroneous call to Tkinter removed; Tkinter no longer imported as a library. 
+    Call replaced by call to equivalent Qt funtion.
+ 2. Selecting a different color map in the Options window did not work for all 
+    color maps. This has been corrected.
+
+==================================================================================
+Additions, modifications and corrections for DGUI V2R5 (20-Jan-2024)
+==================================================================================
+## ADDITIONS ##
+ 1. None   
+
+## MODIFICATIONS ##
+ 1. Updated some calls to some Python libraries to be consistent with most recent 
+    versions of these libraries, whilst remaining backward compatible with older 
+    libraries.
+
+## CORRECTIONS ##
+ 1. Erroneous call to Tkinter removed; Tkinter no longer imported as a library. 
+    Call replaced by call to equvalent Qt funtion.
+ 2. Selecting a different color map in the Options window did not work for all 
+    maps. This has been corrected.
+
+==================================================================================
+Additions, modifications and corrections for DGUI V2R4 (06-Jan-2024)
+==================================================================================
+## ADDITIONS ##
+ 1.   One can interrupt DYNAC execution by clicking "Run DYNAC" a second time.
+ 2.   Versions of software associated with DGUI can by listed from options menu.
+
+## MODIFICATIONS ##
+ 1. Update to how dynac.print is read (due to added columns in this file; see
+    DYNAC UG).
+
+==================================================================================
+Additions, modifications and corrections for DGUI V2R3 (30-Oct-2021)
+==================================================================================
+## ADDITIONS ##
+ 1.   Plot of beam losses  
+ 2.   When closing dgui (use close button), path to last used input file will be saved
+ 3.   Steering correctors are now also shown when plotting envelopes with beam line
+      elements and are marked with the letter C (requires dynac source V7R2 or more
+      recent).
+ 4.   Added options that enables the user to store the (gnu)plots created with plotit as
+      well as the other plots as png or jpeg files.
+ 5.   Creation of a project directory, storage of files in the selected project directory.
+      See user guide for details.
+ 6.   xreader is now the default for opening the User Guides (PDF) on linux, but acrobat
+      is still supported. See user guide for details.
+
+ 
+## MODIFICATIONS ##
+ 1.   Changed main titles of plots to have slightly larger font. The background
+      of the distribution plot window is white now. 
+ 2.   Improved logging of information in large text box in main window, including of
+      actions originating from the options window. 
+ 3.   The way one can close DGUI has been cleaned up. In the "File" drop down menu (left
+      top), you can either "Close DGUI" or "Close all windows". If one clicks on 
+      "Close DGUI", the DGUI window and the DGUI options window (if present), will be
+      closed, but any graphics windows will be allowed to persist. Clicking on
+      "Close all windows" will have the same effect as "Close DGUI", but all graphics
+      windows that are open will be closed as well. Clicking on the X (right top corner
+      of the DGUI window) has the same effect as "Close all windows". 
+
+## CORRECTIONS ##
+ 1.   The automatic scaling for the transverse "Ext" envelope plots did not work 
+      properly for the case where the abs(minimum value) was larger than the
+      maximum value. This has been corrected.
+ 2.   In some cases the last horizontal tick label of the distribution plots could
+      be cut off; now there is more space for these labels. 
+
+# DELETIONS ## 
+ 1.   None
+
+==================================================================================
+Additions, modifications and corrections for DGUI V2R2 (1-May-2020)
+==================================================================================
+## ADDITIONS ##
+ 1.   In the options window one can now choose from different colormaps for 
+      distribution plots. These are used when making density plots. One can change
+      the colormap (for a single session) in the options window, or one can set the
+      user preferred colormap in the dgui.ini file. The colorbar was already 
+      visible in the options window, but now it is also visible in the window
+      containing the density plots. An additional library (colorcet) needs to be 
+      installed (e.g. with pip) before you can use this new revision of DGUI. See 
+      the DGUI User Guide for more details. 
+ 2.   User defined limits for distribution plots can now also be set via the 
+      options window.
+ 3.   The RMS emittance values can optionally be printed in the distribtuion plots.
+ 4.   The density plots now also have a colorbar added.
+ 5.   Optionally beam line elements are plotted in the envelope plot.
+ 
+## MODIFICATIONS ##
+ 1.   The default dynac binary has been changed from dynacv6_0 to dynacv7. If
+      dynacv6_0 is nevertheless preferred, one can either change this (for a single
+      session) in the options window, or one can set the user preferred binary
+      as default in the dgui.ini file. See the DGUI User Guide for more details.
+ 2.   DGUI now retains the last used input file path within a session, as well as the 
+      last used distribution file path within a session.
+ 3.   The background color of the options window was changed in order to improve
+      readability of the labels on the window.
+
+## CORRECTIONS ##
+ 1.   None
+
+# DELETIONS ## 
+ 1.   None
+
+==================================================================================
+Additions, modifications and corrections for DGUI V2R1 (1-May-2019)
+==================================================================================
+## ADDITIONS ##
+ 1.   In the "DYNAC GUI Options" window one can now change the DYNAC binary DGUI
+      is to use. See the DGUI UG for more details.
+ 2.   One can now also plot the beam centroid and transmission; see the DGUI UG
+      for more details.
+ 3.   Execution of DYNAC can now be interrupted by typing ctrl-I (cmd-I on MAC).
+ 4.   Graph limits can now also be set in the dgui.in file; see the DGUI UG for
+      more details.
+
+## MODIFICATIONS ##
+ 1.   The positioning and sizing of some windows and window elements has been
+      slighlty modified in order to avoid text being clipped in certain cases
+      of rendering the windows on full HD screens.
+
+## CORRECTIONS ##
+ 1.   Pressing the "plot W,Phi" button did not result in a plot for the case of 
+      a simulation that was done with just an RFQ. This has been fixed. 
+
+==================================================================================
+Additions, modifications and corrections for DGUI V2R0 (14-Jul-2018)
+==================================================================================
+## MODIFICATIONS ##
+ 1.   DGUI V1R0 was based on the DISLIN graphics package. DGUI V2R0 is a rewrite
+      of V1R0, based on Python3.6, PyQt5 and pyqtgraph. On the surface it has 
+      essentially the same look and feel as its predecessor, with some added 
+      functionalities.
+
+==================================================================================
+Additions, modifications and corrections for DGUI V1R0 (29-Jul-2016)
+==================================================================================
+First release, based on the DISLIN graphics package.
+
+==================================================================================
+==================================================================================
+
